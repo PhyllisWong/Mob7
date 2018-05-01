@@ -15,7 +15,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Show the red view
-        setupRedView()
+//        setupRedView()
+        
+        // show black and grey checker board
+        setupCheckerBoard()
     }
     
     func setupRedView() {
@@ -31,7 +34,49 @@ class ViewController: UIViewController {
     }
     
     func setupCheckerBoard() {
+        let containerRect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.width)
+        let containerView = UIView(frame: containerRect)
+        containerView.backgroundColor = .red
+        self.view.addSubview(containerView)
         
+        
+        let subviewWidth = (self.view.frame.width) / CGFloat(8)
+//        var subviewsArray = [UIView]()
+        var subX: CGFloat = 0
+        var subY: CGFloat = 0
+        var subRect = CGRect(x: subX, y: subX, width: subviewWidth, height: subviewWidth)
+        
+        var isBlack = true
+        // Create the rows
+        for row in 0...7 {
+            
+            // Create the columns
+            for box in 0...7 {
+                let subview = UIView(frame: subRect)
+                
+                if isBlack {
+                    subview.backgroundColor = .black
+                    isBlack = false
+                } else {
+                    subview.backgroundColor = .gray
+                    isBlack = true
+                }
+                containerView.addSubview(subview)
+                
+                // Move the piece down
+                subY += subviewWidth
+                subRect = CGRect(x: subX, y: subY, width: subviewWidth, height: subviewWidth)
+                print(subY, subX)
+            }
+            
+            isBlack = !isBlack
+            
+            // reset the y coordinate to the top
+            subY = 0
+            // move the piece to the right
+            subX += subviewWidth
+            subRect = CGRect(x: subX, y: subY, width: subviewWidth, height: subviewWidth)
+        }
     }
 
 }
