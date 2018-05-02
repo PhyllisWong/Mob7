@@ -46,17 +46,20 @@ class ViewController: UIViewController {
         var subY: CGFloat = 0
         var subRect = CGRect(x: subX, y: subX, width: subviewWidth, height: subviewWidth)
         
+        // Start with the black square
         var isBlack = true
-        // Create the rows
-        for row in 0...7 {
-            
-            // Create the columns
-            for box in 0...7 {
+        
+        // For each row along the top...
+        for _ in 0...7 {
+            // Create the columns down
+            for _ in 0...7 {
+                
+                // This view will toggle between black and grey
                 let subview = UIView(frame: subRect)
                 
                 if isBlack {
                     subview.backgroundColor = .black
-                    isBlack = false
+                    isBlack = false // swap the color
                 } else {
                     subview.backgroundColor = .gray
                     isBlack = true
@@ -66,9 +69,9 @@ class ViewController: UIViewController {
                 // Move the piece down
                 subY += subviewWidth
                 subRect = CGRect(x: subX, y: subY, width: subviewWidth, height: subviewWidth)
-                print(subY, subX)
             }
             
+            // To get the next column to start with the color it was last
             isBlack = !isBlack
             
             // reset the y coordinate to the top
@@ -78,6 +81,5 @@ class ViewController: UIViewController {
             subRect = CGRect(x: subX, y: subY, width: subviewWidth, height: subviewWidth)
         }
     }
-
 }
 
