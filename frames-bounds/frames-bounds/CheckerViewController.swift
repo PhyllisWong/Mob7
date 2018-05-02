@@ -25,7 +25,6 @@ class CheckerViewController: UIViewController {
         
         
         let subviewWidth = (self.view.frame.width) / CGFloat(8)
-        //        var subviewsArray = [UIView]()
         var subX: CGFloat = 0
         var subY: CGFloat = 0
         var subRect = CGRect(x: subX, y: subX, width: subviewWidth, height: subviewWidth)

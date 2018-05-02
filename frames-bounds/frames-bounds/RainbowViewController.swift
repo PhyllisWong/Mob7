@@ -10,23 +10,28 @@ import UIKit
 
 class RainbowViewController: UIViewController {
     
+    // Keep track of colors with an enum and index
+    var currentBGColor = 0
+    var colorsArray = [Colors.redOrange, .orange, .yellow, .lightGreen, .green, .greenBlue, .lightBlue, .blue, .violet, .pink, .redPink, .red]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(containerVC)
+        self.view.addSubview(containerView)
+        setupRainbowView()
         
     }
 
-    lazy var containerVC: UIView = {
-        let width = self.view.frame.width
-        let height = self.view.frame.height
+    lazy var containerView: UIView = {
+        let width = (self.view.frame.width) - 40
+        let height = self.view.frame.height - 40
         
-        var xPos = CGFloat(0)
-        var yPos = CGFloat(0)
+        var xPos = CGFloat(20)
+        var yPos = CGFloat(20)
         
         let rect = CGRect(x: xPos, y: yPos, width: width, height: height)
         let vc = UIView(frame: rect)
-        vc.backgroundColor = .blue
+        vc.backgroundColor = .red
         
         return vc
     }()
@@ -34,11 +39,39 @@ class RainbowViewController: UIViewController {
     // Create a rainbow view with 12 colors
     // width same as the screen width with a 20px margin
     // height of the 12 color stack screen height with 20 px margin
+    func setupRainbowView() {
+        let width = (containerView.frame.width)
+        let height = (containerView.frame.height) / CGFloat(12)
+        let xPos: CGFloat = 0
+        var yPos: CGFloat = 0
+        var rect = CGRect(x: xPos, y: yPos, width: width, height: height)
+        
+        // Create the column down
+        for _ in 0...11 {
+            let subview = UIView(frame: rect)
+            subview.backgroundColor = nextColor()
+            
+            containerView.addSubview(subview)
+            
+            // Move the piece down
+            yPos += height
+            rect = CGRect(x: xPos, y: yPos, width: width, height: height)
+        }
+        
+    }
     
-    
+    func nextColor() -> UIColor {
+        // Get the next color on the wheel
+        currentBGColor = currentBGColor % colorsArray.count
+        if currentBGColor < 11 {
+            currentBGColor += 1
+        }
+        
+        return colorsArray[currentBGColor].toUIColor()
+    }
 }
 
-enum Colors: UIColor {
+enum Colors {
     
     // Colors to present the rainbow stack
     case redOrange
@@ -57,7 +90,7 @@ enum Colors: UIColor {
     func toUIColor() -> UIColor {
         switch self {
             case .redOrange:
-                return UIColor(r: 255, g: 94, b: 0)
+                return UIColor(r: 255, g: 51, b: 51)
             case .orange:
                 return UIColor(r: 255, g: 145, b: 0)
             case .yellow:
