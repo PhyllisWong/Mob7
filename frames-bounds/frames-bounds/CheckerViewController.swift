@@ -1,47 +1,31 @@
 //
-//  ViewController.swift
+//  CheckedViewController.swift
 //  frames-bounds
 //
-//  Created by Phyllis Wong on 5/1/18.
+//  Created by Phyllis Wong on 5/2/18.
 //  Copyright © 2018 Phyllis Wong. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    var redView = UIView()
-    
+class CheckerViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Show the red view
-//        setupRedView()
-        
+
+        // Do any additional setup after loading the view.
         // show black and grey checker board
         setupCheckerBoard()
     }
-    
-    func setupRedView() {
-        let height = (self.view.frame.height - 40)
-        let width = (self.view.frame.width - 40)
-        let rectangle = CGRect(x: 20, y: 20, width: width, height: height)
-        
-        self.redView = UIView(frame: rectangle)
-        self.redView.backgroundColor = .red
-        
-        // Add the subview to the view controller's view
-        self.view.addSubview(redView)
-    }
-    
+
     func setupCheckerBoard() {
         let containerRect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.width)
         let containerView = UIView(frame: containerRect)
-        containerView.backgroundColor = .red
         self.view.addSubview(containerView)
         
         
         let subviewWidth = (self.view.frame.width) / CGFloat(8)
-//        var subviewsArray = [UIView]()
+        //        var subviewsArray = [UIView]()
         var subX: CGFloat = 0
         var subY: CGFloat = 0
         var subRect = CGRect(x: subX, y: subX, width: subviewWidth, height: subviewWidth)
@@ -81,5 +65,5 @@ class ViewController: UIViewController {
             subRect = CGRect(x: subX, y: subY, width: subviewWidth, height: subviewWidth)
         }
     }
-}
 
+}
