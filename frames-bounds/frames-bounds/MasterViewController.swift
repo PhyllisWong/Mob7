@@ -23,7 +23,7 @@ class MasterViewController: UIViewController {
     
     // Segmented control to display other view controllers
     lazy var navSegmentControl: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["red", "checker", "rainbow"])
+        let sc = UISegmentedControl(items: ["red", "checker", "rainbow", "concentric", "pattern"])
         sc.translatesAutoresizingMaskIntoConstraints = false
         sc.tintColor = UIColor.black
         sc.selectedSegmentIndex = 0
@@ -41,9 +41,12 @@ class MasterViewController: UIViewController {
     }
     
     @objc func madeSelection(_ sender: UISegmentedControl) {
-        redVC.view.isHidden = sender.selectedSegmentIndex == 1 || sender.selectedSegmentIndex == 2
-        checkerVC.view.isHidden = sender.selectedSegmentIndex == 0 || sender.selectedSegmentIndex == 2
-        rainbowVC.view.isHidden = sender.selectedSegmentIndex == 0 || sender.selectedSegmentIndex == 1
+        
+        redVC.view.isHidden = sender.selectedSegmentIndex == 1 || sender.selectedSegmentIndex == 2 || sender.selectedSegmentIndex == 3 || sender.selectedSegmentIndex == 4
+        checkerVC.view.isHidden = sender.selectedSegmentIndex == 0 || sender.selectedSegmentIndex == 2 || sender.selectedSegmentIndex == 3 || sender.selectedSegmentIndex == 4
+        rainbowVC.view.isHidden = sender.selectedSegmentIndex == 0 || sender.selectedSegmentIndex == 1 || sender.selectedSegmentIndex == 3 || sender.selectedSegmentIndex == 4
+        concentricVC.view.isHidden = sender.selectedSegmentIndex == 0 || sender.selectedSegmentIndex == 1 || sender.selectedSegmentIndex == 2 || sender.selectedSegmentIndex == 4
+        patternVC.view.isHidden = sender.selectedSegmentIndex == 0 || sender.selectedSegmentIndex == 1 || sender.selectedSegmentIndex == 2 || sender.selectedSegmentIndex == 3
     }
 
     override func viewDidLoad() {
@@ -78,6 +81,17 @@ class MasterViewController: UIViewController {
         return vc
     }()
     
+    lazy var concentricVC: ConcentricViewController = {
+        let vc = ConcentricViewController()
+        self.addAsChildVC(childVC: vc)
+        return vc
+    }()
+    
+    lazy var patternVC: PatternViewController = {
+        let vc = PatternViewController()
+        self.addAsChildVC(childVC: vc)
+        return vc
+    }()
 }
 
 
