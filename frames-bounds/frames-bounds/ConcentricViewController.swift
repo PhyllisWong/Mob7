@@ -50,10 +50,10 @@ class ConcentricViewController: UIViewController {
     // reduce the saturation by 10% from the last one
     
     func setupInnerViews() {
-        var width = self.width - 20
-        var height = self.height - 20
-        var xPos = self.xPos
-        var yPos = self.yPos
+        var width = self.width - 40
+        var height = self.height - 40
+        var xPos = self.xPos + 10
+        var yPos = self.yPos + 10
         
         var rect = CGRect(x: xPos, y: yPos, width: width, height: height)
         var sat: CGFloat = 1.0 - 0.1
@@ -64,10 +64,10 @@ class ConcentricViewController: UIViewController {
             containerView.addSubview(subview)
             
             // Shrink and move the piece down
-            xPos += 10
-            yPos += 10
-            width -= 20
-            height -= 20
+            xPos += 20
+            yPos += 20
+            width -= 40
+            height -= 40
             rect = CGRect(x: xPos, y: yPos, width: width, height: height)
             sat -= 0.1
         }
