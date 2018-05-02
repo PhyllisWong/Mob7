@@ -13,7 +13,7 @@ class MasterViewController: UIViewController {
     lazy var containerView: UIView = {
         let containerRect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         let cv = UIView(frame: containerRect)
-        cv.backgroundColor = .gray
+        cv.backgroundColor = .white
         return cv
     }()
     
@@ -25,7 +25,7 @@ class MasterViewController: UIViewController {
     lazy var navSegmentControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["red", "checker", "rainbow"])
         sc.translatesAutoresizingMaskIntoConstraints = false
-        sc.tintColor = UIColor.white
+        sc.tintColor = UIColor.black
         sc.selectedSegmentIndex = 0
         return sc
     }()
