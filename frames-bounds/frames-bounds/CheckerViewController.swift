@@ -44,7 +44,7 @@ class CheckerViewController: UIViewController {
                     subview.backgroundColor = .black
                     isBlack = false // swap the color
                 } else {
-                    subview.backgroundColor = .gray
+                    subview.backgroundColor = .lightGray
                     isBlack = true
                 }
                 containerView.addSubview(subview)
