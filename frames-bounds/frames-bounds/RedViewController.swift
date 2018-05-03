@@ -25,6 +25,7 @@ class RedViewController: UIViewController {
         let rectangle = CGRect(x: 20, y: 20, width: width, height: height)
         
         let redView = UIView(frame: rectangle)
+        redView.layer.cornerRadius = 10
         redView.backgroundColor = .red
         
         // Add the subview to the view controller's view

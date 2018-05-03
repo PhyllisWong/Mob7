@@ -48,6 +48,7 @@ class PatternViewController: UIViewController {
             for _ in 0...2 {
                 // This view will have a black background
                 let subview = UIView(frame: rect)
+                subview.layer.cornerRadius = 10
                 subview.backgroundColor = .black
  
                 containerView.addSubview(subview)

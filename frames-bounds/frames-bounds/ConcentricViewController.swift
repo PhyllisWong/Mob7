@@ -60,6 +60,7 @@ class ConcentricViewController: UIViewController {
         
         for _ in 0...6 {
             let subview = UIView(frame: rect)
+            subview.layer.cornerRadius = 10
             subview.backgroundColor = UIColor(hue: 1, saturation: sat, brightness: 1, alpha: 1)
             containerView.addSubview(subview)
             
