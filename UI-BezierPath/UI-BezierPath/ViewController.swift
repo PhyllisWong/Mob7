@@ -9,17 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let rect = CGRect(x: 20, y: 40, width: self.view.frame.width - 40, height: self.view.frame.width - 40)
+        let bezierView = CirclePath(frame: rect)
+        
+        view.addSubview(bezierView)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
