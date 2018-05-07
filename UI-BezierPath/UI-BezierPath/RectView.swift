@@ -75,10 +75,10 @@ class RectView: UIView {
             containerView.layer.addSublayer(layer)
             
             // Shrink and move the piece down
-            xPos += 20
-            yPos += 20
-            width -= 40
-            height -= 40
+            xPos += 15
+            yPos += 15
+            width -= 30
+            height -= 30
             rect = CGRect(x: xPos, y: yPos, width: width, height: height)
             hue -= 0.05
             sat -= 0.15
