@@ -24,13 +24,39 @@ class SkylineView: UIView {
         return skyGradient
     }()
     
-//    let gradientLayer = CAGradientLayer()
+    lazy var sandLayer: CAShapeLayer = {
+        let ds = CAShapeLayer()
+        var rect = CGRect(x: skyGradient.position.x, y: skyGradient.frame.height / 2.0, width: skyGradient.frame.width, height: skyGradient.frame.height /
+        2.0)
+        ds.zPosition = 1
+        ds.frame = rect
+        return ds
+    }()
     
+    lazy var darkOrange: CGColor = {
+        let oc = UIColor(red: 255/255, green: 127/255, blue: 22/255, alpha: 1).cgColor
+        return oc
+    }()
+    
+    lazy var lightOrange: CGColor = {
+        let oc = UIColor(red: 252/255, green: 170/255, blue: 103/255, alpha: 1).cgColor
+        return oc
+    }()
+    
+    lazy var darkYellow: CGColor = {
+        let oc = UIColor(red: 255/255, green: 225/255, blue: 0/255, alpha: 1).cgColor
+        return oc
+    }()
+    
+    lazy var lightYellow: CGColor = {
+        let oc = UIColor(red: 252/255, green: 239/255, blue: 143/255, alpha: 1).cgColor
+        return oc
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.addSublayer(skyGradient)
-       
+        layer.addSublayer(sandLayer)
     }
 
     
