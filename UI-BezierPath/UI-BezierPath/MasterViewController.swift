@@ -19,13 +19,19 @@ class MasterViewController: UIViewController {
         return cv
     }()
     
-    lazy var concentricRectView: UIView = {
+    lazy var skylineView: SkylineView = {
+        let rect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.width)
+        let sv = SkylineView(frame: rect)
+        return sv
+    }()
+    
+    lazy var concentricRectView: RectView = {
         let rect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         let rv = RectView(frame: rect)
         return rv
     }()
 
-    lazy var gradientView: UIView = {
+    lazy var gradientView: GradientView = {
         let rect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         let gv = GradientView(frame: rect)
         return gv
@@ -48,6 +54,7 @@ class MasterViewController: UIViewController {
         containerView.addSubview(circleView)
         containerView.addSubview(gradientView)
         containerView.addSubview(concentricRectView)
+        containerView.addSubview(skylineView)
     }
 
 }

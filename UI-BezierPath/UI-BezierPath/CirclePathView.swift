@@ -24,11 +24,8 @@ class CirclePathView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         layer.addSublayer(shapeLayer)
-        
-       
-        
+
     }
     
     // For initializing from storyboard
