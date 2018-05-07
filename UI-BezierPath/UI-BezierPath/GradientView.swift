@@ -15,24 +15,17 @@ import UIKit
 
 class GradientView: UIView {
     
-    let gradientLayer = CAGradientLayer()
+    let colorLayer = CALayer()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         // Set the frame of the gradient layer to match the frame of the view
-        gradientLayer.frame = frame
+        colorLayer.frame = frame
+        colorLayer.backgroundColor = UIColor.red.cgColor
         
-        layer.addSublayer(gradientLayer)
-
-        gradientLayer.colors = [UIColor.red.cgColor,
-                                UIColor.yellow.cgColor,
-                                UIColor.green.cgColor,
-                                UIColor.blue.cgColor]
-        
-        // Angle, xPos, yPos, zPos
-        gradientLayer.transform = CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
+        layer.addSublayer(colorLayer)
     }
     
     // For initializing from storyboard

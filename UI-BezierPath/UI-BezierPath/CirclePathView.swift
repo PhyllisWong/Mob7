@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CirclePath: UIView {
+class CirclePathView: UIView {
 
     let shapeLayer = CAShapeLayer()
     

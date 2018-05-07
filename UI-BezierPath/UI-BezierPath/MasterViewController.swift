@@ -18,6 +18,12 @@ class MasterViewController: UIViewController {
         cv.backgroundColor = .lightGray
         return cv
     }()
+    
+    lazy var concentricRectView: UIView = {
+        let rect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        let rv = RectView(frame: rect)
+        return rv
+    }()
 
     lazy var gradientView: UIView = {
         let rect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
@@ -27,7 +33,7 @@ class MasterViewController: UIViewController {
     
     lazy var circleView: UIView = {
         let rect = CGRect(x: 20, y: 20, width: (self.view.frame.width) - 40, height: (self.view.frame.width) - 40)
-        let cv = CirclePath(frame: rect)
+        let cv = CirclePathView(frame: rect)
         return cv
     }()
     
@@ -41,6 +47,7 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
         containerView.addSubview(circleView)
         containerView.addSubview(gradientView)
+        containerView.addSubview(concentricRectView)
     }
 
 }
