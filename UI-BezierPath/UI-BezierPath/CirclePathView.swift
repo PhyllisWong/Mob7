@@ -10,7 +10,16 @@ import UIKit
 
 class CirclePathView: UIView {
 
-    let shapeLayer = CAShapeLayer()
+    lazy var shapeLayer: CAShapeLayer = {
+        
+        // Set the rectangle size to the bounds of the view
+        let path = UIBezierPath(ovalIn: self.bounds)
+        let shape = CAShapeLayer()
+        shape.path = path.cgPath
+        shape.lineWidth = 10
+        shape.strokeColor = UIColor.red.cgColor
+        return shape
+    }()
     
     
     override init(frame: CGRect) {
@@ -18,11 +27,7 @@ class CirclePathView: UIView {
         
         layer.addSublayer(shapeLayer)
         
-        // Set the rectangle size to the bounds of the view
-        let path = UIBezierPath(ovalIn: self.bounds)
-        shapeLayer.path = path.cgPath
-        shapeLayer.lineWidth = 10
-        shapeLayer.strokeColor = UIColor.red.cgColor
+       
         
     }
     

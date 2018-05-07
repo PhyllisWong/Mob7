@@ -31,7 +31,7 @@ class MasterViewController: UIViewController {
         return gv
     }()
     
-    lazy var circleView: UIView = {
+    lazy var circleView: CirclePathView = {
         let rect = CGRect(x: 20, y: 20, width: (self.view.frame.width) - 40, height: (self.view.frame.width) - 40)
         let cv = CirclePathView(frame: rect)
         return cv

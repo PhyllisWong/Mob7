@@ -15,6 +15,7 @@
 		B97933C920A0CF12009EDE8D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97933C820A0CF12009EDE8D /* Color.swift */; };
 		B97933CB20A0D48D009EDE8D /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97933CA20A0D48D009EDE8D /* GradientView.swift */; };
 		B97933CD20A0F405009EDE8D /* RectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97933CC20A0F405009EDE8D /* RectView.swift */; };
+		B97933CF20A113E7009EDE8D /* skylineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97933CE20A113E7009EDE8D /* skylineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B97933C820A0CF12009EDE8D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B97933CA20A0D48D009EDE8D /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B97933CC20A0F405009EDE8D /* RectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectView.swift; sourceTree = "<group>"; };
+		B97933CE20A113E7009EDE8D /* skylineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skylineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +64,9 @@
 			children = (
 				B93C6E86209CCBB500CBDD5E /* AppDelegate.swift */,
 				B93C6E88209CCBB500CBDD5E /* MasterViewController.swift */,
-				B97933CA20A0D48D009EDE8D /* GradientView.swift */,
+				B97933CE20A113E7009EDE8D /* skylineView.swift */,
 				B97933CC20A0F405009EDE8D /* RectView.swift */,
+				B97933CA20A0D48D009EDE8D /* GradientView.swift */,
 				B93C6E98209CCC8A00CBDD5E /* CirclePathView.swift */,
 				B97933C820A0CF12009EDE8D /* Color.swift */,
 				B93C6E8D209CCBB700CBDD5E /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 				B97933CB20A0D48D009EDE8D /* GradientView.swift in Sources */,
 				B93C6E99209CCC8A00CBDD5E /* CirclePathView.swift in Sources */,
 				B97933C920A0CF12009EDE8D /* Color.swift in Sources */,
+				B97933CF20A113E7009EDE8D /* skylineView.swift in Sources */,
 				B93C6E89209CCBB500CBDD5E /* MasterViewController.swift in Sources */,
 				B97933CD20A0F405009EDE8D /* RectView.swift in Sources */,
 				B93C6E87209CCBB500CBDD5E /* AppDelegate.swift in Sources */,

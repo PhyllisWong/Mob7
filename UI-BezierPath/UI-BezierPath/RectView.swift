@@ -21,6 +21,9 @@ class RectView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.setupContainerLayer()
+        self.setupLayers()
     }
     
     
@@ -31,10 +34,8 @@ class RectView: UIView {
     
     lazy var containerView: UIView = {
         // Get the initial width and height
-        self.width = (layer.bounds.width) - 20
-        self.height = (layer.bounds.width) - 20
-        self.xPos += 10
-        self.yPos += 10
+        self.width = (layer.bounds.width)
+        self.height = (layer.bounds.height)
         
         // Set the rectangle in position, and give it an initial size
         let rect = CGRect(x: xPos, y: yPos, width: width, height: height)
@@ -45,6 +46,7 @@ class RectView: UIView {
     }()
     
     func setupContainerLayer() {
+        
         self.addSubview(containerView)
     }
     
@@ -52,19 +54,24 @@ class RectView: UIView {
     // Place them 20px to the left, and 20px down from the last one
     // reduce the saturation by 10% from the last one
     
-    func setupInnerViews() {
-        var width = self.width - 40
-        var height = self.height - 40
-        var xPos = self.xPos + 10
-        var yPos = self.yPos + 10
+    func setupLayers() {
+        var width = containerView.frame.width
+        var height = containerView.frame.height
+        var xPos = self.xPos
+        var yPos = self.yPos
         
         var rect = CGRect(x: xPos, y: yPos, width: width, height: height)
+        var hue: CGFloat = 1.0
         var sat: CGFloat = 1.0 - 0.1
         
         for _ in 0...6 {
             let layer = CALayer()
+            layer.frame = rect
+
+//            layer.frame = rectFrame
+            
             layer.cornerRadius = 10
-            layer.backgroundColor = UIColor(hue: 1, saturation: sat, brightness: 1, alpha: 1).cgColor
+            layer.backgroundColor = UIColor(hue: hue, saturation: sat, brightness: 1, alpha: 1).cgColor
             containerView.layer.addSublayer(layer)
             
             // Shrink and move the piece down
@@ -73,7 +80,8 @@ class RectView: UIView {
             width -= 40
             height -= 40
             rect = CGRect(x: xPos, y: yPos, width: width, height: height)
-            sat -= 0.1
+            hue -= 0.05
+            sat -= 0.15
         }
     }
 }
