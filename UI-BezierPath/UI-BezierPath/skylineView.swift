@@ -24,7 +24,7 @@ class SkylineView: UIView {
         return skyGradient
     }()
     
-    lazy var circleLg: CAShapeLayer = {
+    lazy var sunRays: CAShapeLayer = {
         let shape = CAShapeLayer()
         let rect = CGRect(x: skyGradient.frame.width - 140, y: 30, width: 80, height: 80)
         let path = UIBezierPath(ovalIn: rect)
@@ -34,7 +34,7 @@ class SkylineView: UIView {
         return shape
     }()
     
-    lazy var circleSm: CAShapeLayer = {
+    lazy var sun: CAShapeLayer = {
         let shape = CAShapeLayer()
         let rect = CGRect(x: skyGradient.frame.width - 130, y: 40, width: 60, height: 60)
         let path = UIBezierPath(ovalIn: rect)
@@ -48,25 +48,75 @@ class SkylineView: UIView {
     // Shape layers need a path, stroke color, line width
     lazy var sandLayer: CAShapeLayer = {
         let darksand = CAShapeLayer()
-        let rect = CGRect(x: 0, y: skyGradient.bounds.height / 2, width: skyGradient.frame.width, height: skyGradient.bounds.height / 2.0)
-        let path = UIBezierPath(rect: rect)
-        darksand.path = path.cgPath
+        let rect = CGRect(x: 0, y: bounds.height / 2, width: bounds.width, height: bounds.height / 2.0)
+        
+        let bezier = UIBezierPath()
+        
+        // Set starting point
+        let startPoint = CGPoint(x: 0, y: bounds.height / 2)
+        let midPoint = CGPoint(x: bounds.midX, y: bounds.midY + 100)
+        let endPoint = CGPoint(x: bounds.maxX, y: startPoint.y + 30)
+        let controlPoint1 = CGPoint(x: midPoint.x / 2, y: startPoint.y)
+        let controlPoint2 = CGPoint(x: controlPoint1.x, y: midPoint.y)
+        let controlPoint3 = CGPoint(x: ((endPoint.x - midPoint.x) / 2) + midPoint.x, y: midPoint.y)
+        let controlPoint4 = CGPoint(x: controlPoint3.x, y: endPoint.y)
+        
+        bezier.move(to: startPoint)
+        bezier.addCurve(to: midPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
+        bezier.addCurve(to: endPoint, controlPoint1: controlPoint3, controlPoint2: controlPoint4)
+        
+        // Draw 2 connecting curves
+        // Add closing lines
+        let rightCorner = CGPoint(x: bounds.maxX, y: bounds.maxY)
+        let leftCorner = CGPoint(x: bounds.minX, y: bounds.maxY)
+        bezier.addLine(to: rightCorner)
+        bezier.addLine(to: leftCorner)
+        bezier.close()
+        
+        darksand.path = bezier.cgPath
         darksand.fillColor = darkOrange
-        darksand.lineWidth = 10
+//        darksand.strokeColor = darkOrange
+        darksand.lineWidth = 5
         darksand.zPosition = 1
         return darksand
     }()
     
+    // Shape layers need a path, stroke color, line width
     lazy var hillLayer: CAShapeLayer = {
-        let lightsand = CAShapeLayer()
-        let rect = CGRect(x: 0, y: (skyGradient.bounds.height / 2) - 20, width: skyGradient.frame.width, height: (skyGradient.bounds.height / 2.0) + 20)
-        let path = UIBezierPath(rect: rect)
-        lightsand.path = path.cgPath
-        lightsand.fillColor = lightOrange
-        lightsand.lineWidth = 10
-        lightsand.zPosition = 1
-        return lightsand
+        let sand = CAShapeLayer()
+        let rect = CGRect(x: 0, y: bounds.height / 2, width: bounds.width, height: bounds.height / 2.0)
+        
+        let bezier = UIBezierPath()
+        
+        // Set starting point
+        let startPoint = CGPoint(x: 0, y: (bounds.height / 2) + 30)
+        let midPoint = CGPoint(x: bounds.midX, y: bounds.midY + 80)
+        let endPoint = CGPoint(x: bounds.maxX, y: bounds.height / 2)
+        let controlPoint1 = CGPoint(x: midPoint.x / 2, y: startPoint.y)
+        let controlPoint2 = CGPoint(x: controlPoint1.x, y: midPoint.y)
+        let controlPoint3 = CGPoint(x: ((endPoint.x - midPoint.x) / 2) + midPoint.x, y: midPoint.y)
+        let controlPoint4 = CGPoint(x: controlPoint3.x, y: endPoint.y)
+        
+        bezier.move(to: startPoint)
+        bezier.addCurve(to: midPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
+        bezier.addCurve(to: endPoint, controlPoint1: controlPoint3, controlPoint2: controlPoint4)
+        
+        // Draw 2 connecting curves
+        // Add closing lines
+        let rightCorner = CGPoint(x: bounds.maxX, y: bounds.maxY)
+        let leftCorner = CGPoint(x: bounds.minX, y: bounds.maxY)
+        bezier.addLine(to: rightCorner)
+        bezier.addLine(to: leftCorner)
+        bezier.close()
+        
+        sand.path = bezier.cgPath
+        sand.fillColor = lightOrange
+        //        darksand.strokeColor = darkOrange
+        sand.lineWidth = 5
+        sand.zPosition = 1
+        return sand
     }()
+    
     
     lazy var darkOrange: CGColor = {
         let oc = UIColor(red: 255/255, green: 127/255, blue: 22/255, alpha: 1).cgColor
@@ -94,8 +144,8 @@ class SkylineView: UIView {
         layer.addSublayer(skyGradient)
         layer.addSublayer(hillLayer)
         layer.addSublayer(sandLayer)
-        layer.addSublayer(circleLg)
-        layer.addSublayer(circleSm)
+        layer.addSublayer(sunRays)
+        layer.addSublayer(sun)
         layer.layoutSublayers()
     }
 
