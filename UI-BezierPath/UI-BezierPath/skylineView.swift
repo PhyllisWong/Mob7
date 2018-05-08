@@ -18,19 +18,54 @@ class SkylineView: UIView {
         let darkerBlue = UIColor(red: 112/255.0, green: 222/255.0, blue: 249/255.0, alpha: 1.0).cgColor
         let lighterBlue = UIColor(red: 209/255.0, green: 243/255.0, blue: 252/255.0, alpha: 1.0).cgColor
         skyGradient.colors = [darkerBlue, lighterBlue]
-        
+        skyGradient.zPosition = 0
         // Angle, xPos, yPos, zPos
         skyGradient.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1) // horizontal gradient, right to left
         return skyGradient
     }()
     
+    lazy var circleLg: CAShapeLayer = {
+        let shape = CAShapeLayer()
+        let rect = CGRect(x: skyGradient.frame.width - 140, y: 30, width: 80, height: 80)
+        let path = UIBezierPath(ovalIn: rect)
+        shape.path = path.cgPath
+        shape.lineWidth = 0
+        shape.fillColor = lightYellow
+        return shape
+    }()
+    
+    lazy var circleSm: CAShapeLayer = {
+        let shape = CAShapeLayer()
+        let rect = CGRect(x: skyGradient.frame.width - 130, y: 40, width: 60, height: 60)
+        let path = UIBezierPath(ovalIn: rect)
+        shape.path = path.cgPath
+        shape.lineWidth = 0
+        shape.fillColor = darkYellow.cgColor
+        return shape
+    }()
+    
+    
+    // Shape layers need a path, stroke color, line width
     lazy var sandLayer: CAShapeLayer = {
-        let ds = CAShapeLayer()
-        var rect = CGRect(x: skyGradient.position.x, y: skyGradient.frame.height / 2.0, width: skyGradient.frame.width, height: skyGradient.frame.height /
-        2.0)
-        ds.zPosition = 1
-        ds.frame = rect
-        return ds
+        let darksand = CAShapeLayer()
+        let rect = CGRect(x: 0, y: skyGradient.bounds.height / 2, width: skyGradient.frame.width, height: skyGradient.bounds.height / 2.0)
+        let path = UIBezierPath(rect: rect)
+        darksand.path = path.cgPath
+        darksand.fillColor = darkOrange
+        darksand.lineWidth = 10
+        darksand.zPosition = 1
+        return darksand
+    }()
+    
+    lazy var hillLayer: CAShapeLayer = {
+        let lightsand = CAShapeLayer()
+        let rect = CGRect(x: 0, y: (skyGradient.bounds.height / 2) - 20, width: skyGradient.frame.width, height: (skyGradient.bounds.height / 2.0) + 20)
+        let path = UIBezierPath(rect: rect)
+        lightsand.path = path.cgPath
+        lightsand.fillColor = lightOrange
+        lightsand.lineWidth = 10
+        lightsand.zPosition = 1
+        return lightsand
     }()
     
     lazy var darkOrange: CGColor = {
@@ -43,20 +78,25 @@ class SkylineView: UIView {
         return oc
     }()
     
-    lazy var darkYellow: CGColor = {
-        let oc = UIColor(red: 255/255, green: 225/255, blue: 0/255, alpha: 1).cgColor
+    lazy var darkYellow: UIColor = {
+        let oc = UIColor(red: 247/255, green: 222/255, blue: 0/255, alpha: 1)
         return oc
     }()
     
     lazy var lightYellow: CGColor = {
-        let oc = UIColor(red: 252/255, green: 239/255, blue: 143/255, alpha: 1).cgColor
-        return oc
+        let lightYellow = darkYellow.withAlphaComponent(0.4).cgColor
+        return lightYellow
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         layer.addSublayer(skyGradient)
+        layer.addSublayer(hillLayer)
         layer.addSublayer(sandLayer)
+        layer.addSublayer(circleLg)
+        layer.addSublayer(circleSm)
+        layer.layoutSublayers()
     }
 
     
