@@ -52,9 +52,9 @@ class MasterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         containerView.addSubview(circleView)
-        containerView.addSubview(gradientView)
-        containerView.addSubview(concentricRectView)
-        containerView.addSubview(skylineView)
+//        containerView.addSubview(gradientView)
+//        containerView.addSubview(concentricRectView)
+//        containerView.addSubview(skylineView)
     }
 
 }

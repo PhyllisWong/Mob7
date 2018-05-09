@@ -10,7 +10,7 @@ import UIKit
 
 class CirclePathView: UIView {
 
-    lazy var shapeLayer: CAShapeLayer = {
+    lazy var circle: CAShapeLayer = {
         
         // Set the rectangle size to the bounds of the view
         let path = UIBezierPath(ovalIn: self.bounds)
@@ -21,10 +21,32 @@ class CirclePathView: UIView {
         return shape
     }()
     
+    lazy var shadow: CALayer = {
+        let layer = CALayer()
+        
+        layer.frame = CGRect(x: 75, y: 75, width: 150, height: 150)
+        layer.backgroundColor = UIColor.darkGray.cgColor
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowRadius = 5
+        layer.shadowOpacity = 1
+        
+        let contactShadowSize: CGFloat = 20
+        let shadowPath = CGPath(ellipseIn: CGRect(x: -contactShadowSize,
+                                                  y: -contactShadowSize * 0.5,
+                                                  width: layer.bounds.width + contactShadowSize * 2,
+                                                  height: contactShadowSize),
+                                transform: nil)
+        
+        layer.shadowPath = shadowPath
+        return layer
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.addSublayer(shapeLayer)
+        
+        layer.addSublayer(shadow)
+//        layer.addSublayer(circle)
 
     }
     
