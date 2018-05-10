@@ -46,38 +46,40 @@ class SkylineView: UIView {
     }()
     
     
-    // Shape layers need a path, stroke color, line width
+    // Shape layers need: a path & fillcolor or stroke color w/line width
     lazy var sandLayer: CAShapeLayer = {
         let darksand = CAShapeLayer()
         let rect = CGRect(x: 0, y: bounds.height / 2, width: bounds.width, height: bounds.height / 2.0)
         
         let bezier = UIBezierPath()
         
-        // Set starting point
+        // Set the anchor points
         let startPoint = CGPoint(x: 0, y: bounds.height / 2)
         let midPoint = CGPoint(x: bounds.midX, y: bounds.midY + 100)
         let endPoint = CGPoint(x: bounds.maxX, y: startPoint.y + 30)
+        
+        // Set the position of the control handle ends
         let controlPoint1 = CGPoint(x: midPoint.x / 2, y: startPoint.y)
         let controlPoint2 = CGPoint(x: controlPoint1.x, y: midPoint.y)
         let controlPoint3 = CGPoint(x: ((endPoint.x - midPoint.x) / 2) + midPoint.x, y: midPoint.y)
         let controlPoint4 = CGPoint(x: controlPoint3.x, y: endPoint.y)
         
+        // Tell the pen to draw 2 connecting curves
         bezier.move(to: startPoint)
         bezier.addCurve(to: midPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
         bezier.addCurve(to: endPoint, controlPoint1: controlPoint3, controlPoint2: controlPoint4)
         
-        // Draw 2 connecting curves
-        // Add closing lines
+        
+        // Add closing lines for the rectangle
         let rightCorner = CGPoint(x: bounds.maxX, y: bounds.maxY)
         let leftCorner = CGPoint(x: bounds.minX, y: bounds.maxY)
         bezier.addLine(to: rightCorner)
         bezier.addLine(to: leftCorner)
         bezier.close()
         
+        // Assign the path, set the color
         darksand.path = bezier.cgPath
         darksand.fillColor = darkOrange
-//        darksand.strokeColor = darkOrange
-        darksand.lineWidth = 5
         darksand.zPosition = 1
         return darksand
     }()
