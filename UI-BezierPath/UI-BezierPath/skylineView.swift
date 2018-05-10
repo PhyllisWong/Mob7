@@ -20,7 +20,8 @@ class SkylineView: UIView {
         skyGradient.colors = [darkerBlue, lighterBlue]
         skyGradient.zPosition = 0
         // Angle, xPos, yPos, zPos
-        skyGradient.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1) // horizontal gradient, right to left
+        // horizontal gradient, right to left
+        skyGradient.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1)
         return skyGradient
     }()
     
