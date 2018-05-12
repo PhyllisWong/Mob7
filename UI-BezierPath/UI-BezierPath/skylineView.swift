@@ -79,7 +79,7 @@ class SkylineView: UIView {
         
         // Assign the path, set the color
         darksand.path = bezier.cgPath
-        darksand.fillColor = darkOrange
+        darksand.fillColor = sandColor
         darksand.zPosition = 1
         return darksand
     }()
@@ -113,7 +113,7 @@ class SkylineView: UIView {
         bezier.close()
         
         sand.path = bezier.cgPath
-        sand.fillColor = lightOrange
+        sand.fillColor = lightSandColor
         //        darksand.strokeColor = darkOrange
         sand.lineWidth = 5
         sand.zPosition = 1
@@ -121,12 +121,12 @@ class SkylineView: UIView {
     }()
     
     
-    lazy var darkOrange: CGColor = {
+    lazy var sandColor: CGColor = {
         let oc = UIColor(red: 255/255, green: 127/255, blue: 22/255, alpha: 1).cgColor
         return oc
     }()
     
-    lazy var lightOrange: CGColor = {
+    lazy var lightSandColor: CGColor = {
         let oc = UIColor(red: 252/255, green: 170/255, blue: 103/255, alpha: 1).cgColor
         return oc
     }()
